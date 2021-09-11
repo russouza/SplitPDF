@@ -29,13 +29,13 @@ public class SplitForm extends JFrame {
     private JTextArea textArea;
     private JProgressBar progressBar;
     private JButton btnPDFOut;
-    JTextField textField;
-    private JLabel label;
+//    JTextField textField;
+//    private JLabel label;
     private JLabel logo;
     private JLabel copyright;
     File pdfFile;
     String outDir;
-    String sufixo;
+//    String sufixo;
 
     ImageIcon imageLf;
 
@@ -64,7 +64,7 @@ public class SplitForm extends JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(800, 300));
+        setPreferredSize(new Dimension(600, 300));
         this.contentPane = new JPanel();
         this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         this.contentPane.setLayout(new BorderLayout(0, 0));
@@ -88,10 +88,10 @@ public class SplitForm extends JFrame {
         this.btnPDFFile.addActionListener(new ActionWorker());
         this.northPanel.add(this.btnPDFFile);
 
-        this.label = new JLabel("Filename Suffix:");
-        this.northPanel.add(this.label);
+//        this.label = new JLabel("Filename Suffix:");
+//        this.northPanel.add(this.label);
 
-        this.textField = new JTextField();
+/*        this.textField = new JTextField();
         //this.textField.setSize(250,100);
         Dimension d = textField.getPreferredSize();
         d.height = 26;
@@ -99,7 +99,7 @@ public class SplitForm extends JFrame {
         this.textField.setColumns(10);
         this.northPanel.add(this.textField);
         this.textField.setToolTipText("Don't use special characters");
-
+*/
         this.btnPDFOut = new JButton("Select/Create Output Dir");
         this.btnPDFOut.addActionListener(new ActionWorker2());
         this.northPanel.add(this.btnPDFOut);
@@ -120,7 +120,7 @@ public class SplitForm extends JFrame {
         this.contentPane.add(this.progressBar, BorderLayout.SOUTH);
 
         this.copyright = new JLabel("© Copyright 2021, LaserForm Informática Ltda. All rights reserved.");
-        copyright.setFont(new Font("", Font.ITALIC, 10));
+        copyright.setFont(new Font("", Font.ITALIC+Font.BOLD, 10));
         this.northPanel3.add(this.copyright);
     }
 
@@ -157,7 +157,7 @@ public class SplitForm extends JFrame {
 
             //System.out.println(jFileChooser.getSelectedFile());
             outDir = String.valueOf(jFileChooser.getSelectedFile());
-            sufixo = textField.getText();
+//            sufixo = textField.getText();
             //System.out.println("Suffix: " + sufixo);
         }
     }
@@ -166,14 +166,15 @@ public class SplitForm extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            sufixo = textField.getText();
+//            sufixo = textField.getText();
             textAreaAppend("Splitting...");
             textAreaAppend("Wait...");
-            textAreaAppend("Suffix: " + sufixo);
+//            textAreaAppend("Suffix: " + sufixo);
             redirectSystemStreams();
             SplitPDF splitPDF = new SplitPDF(pdfFile);
             try {
-                splitPDF.split(pdfFile, outDir, sufixo);
+                splitPDF.split(pdfFile, outDir);
+//                splitPDF.split(pdfFile, outDir, sufixo);
             } catch (IOException | TesseractException ioException) {
                 ioException.printStackTrace();
             }
@@ -208,7 +209,8 @@ public class SplitForm extends JFrame {
                     }
                     SplitPDF splitPDF = new SplitPDF(pdfFile);
                     try {
-                        splitPDF.split(pdfFile, outDir, sufixo);
+                        splitPDF.split(pdfFile, outDir);
+                        //splitPDF.split(pdfFile, outDir, sufixo);
                     } catch (IOException | TesseractException ioException) {
                         ioException.printStackTrace();
                     }

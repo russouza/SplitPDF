@@ -18,7 +18,7 @@ public class SplitPDF {
 
     }
 
-    public void split(File file, String outDir, String sufixo) throws IOException, TesseractException {
+    public void split(File file, String outDir) throws IOException, TesseractException {
 
         System.out.println("Hello, this is the Splitter");
         //Loading an existing PDF document
@@ -60,7 +60,7 @@ public class SplitPDF {
 
             System.out.println("CPF: " + fileName2);
 
-            newFileName = outDir + "\\RP_" + i + "_CPF_" + fileName2 + "_" + sufixo + ".PDF";
+            newFileName = outDir + "\\RP_" + i + "_CPF_" + fileName2 + ".PDF";
             //newFileName = "D:/TEMP/RP_" + i + "_CPF_" + fileName2 + ".PDF";
             System.out.println(newFileName + " file saved");
 
