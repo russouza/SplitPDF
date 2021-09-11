@@ -18,7 +18,7 @@ public class SplitPDF {
 
     }
 
-    public void split(File file) throws IOException, TesseractException {
+    public void split(File file, String outDir, String sufixo) throws IOException, TesseractException {
 
         System.out.println("Hello, this is the Splitter");
         //Loading an existing PDF document
@@ -45,17 +45,25 @@ public class SplitPDF {
         while(iterator.hasNext()){
             PDDocument pd = iterator.next();
             i++;
-            fileName = "D:/TEMP/SPLIT_"+ i +".pdf";
+            fileName = outDir + "\\SPLIT_"+ i +".pdf";
+            //fileName = "D:/TEMP/SPLIT_"+ i +".pdf";
             System.out.println("filename: " + fileName);
             pd.save(fileName);
 
-            String fileName2 = ocr.ocr(pd);
-            System.out.println("CPF: " + fileName2);
+            // Comentar se não for usar OCR
+            // String fileName2 = ocr.ocr(pd);
 
-            newFileName = "D:/TEMP/holerite_" + fileName2 + "_" + i + ".PDF";
-            System.out.println("Salvo Arquivo " + newFileName);
             File file2 = new File(fileName);
             ReadFile readFile = new ReadFile(file2);
+
+            String fileName2 = readFile.readFile(file2);
+
+            System.out.println("CPF: " + fileName2);
+
+            newFileName = outDir + "\\RP_" + i + "_CPF_" + fileName2 + "_" + sufixo + ".PDF";
+            //newFileName = "D:/TEMP/RP_" + i + "_CPF_" + fileName2 + ".PDF";
+            System.out.println(newFileName + " file saved");
+
             readFile.renameFile(fileName,newFileName);
 
           /*

@@ -7,9 +7,13 @@ import net.sourceforge.tess4j.TesseractException;
 import org.apache.pdfbox.multipdf.Splitter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.Loader;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Iterator;
 
@@ -21,9 +25,13 @@ public class Main {
         //System.out.println("Hello, this is the Splitter");
         //Loading an existing PDF document
         //File file = new File("D:/TEMP/MERGED2.PDF");
-        File file = new File("D:/TEMP/HOLERITES.PDF");
-        SplitPDF splitPDF = new SplitPDF(file);
-        splitPDF.split(file);
+
+//        File file = new File("D:/TEMP/HOLERITES_CPF.PDF");
+//        SplitPDF splitPDF = new SplitPDF(file);
+//        splitPDF.split(file);
+
+        JFrame frame = new SplitForm();
+        frame.setVisible(true);
 
         /*
         OcrPDF ocr = new OcrPDF();
